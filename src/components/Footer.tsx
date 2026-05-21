@@ -12,8 +12,14 @@ export default function Footer() {
         <span>Consultoria Fiscal</span>
         <span>Auditoria Estratégica</span>
       </div>
-      <div className="text-slate-400">
-        &copy; {currentYear} Duos Contabilidade. Todos os direitos reservados. CNPJ: 12.345.678/0001-90.
+      <div className="flex flex-col md:flex-row items-center gap-4 text-slate-400">
+        <div>
+          &copy; {currentYear} Duos Contabilidade. Todos os direitos reservados.
+        </div>
+        <div className="hidden md:block text-slate-600">|</div>
+        <div className="text-slate-500 font-mono text-[9px] lowercase tracking-normal">
+          Desenvolvido por <a href="https://gtsglobaltech.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 hover:underline font-semibold tracking-wider uppercase transition-colors">GTS Global Tech Software</a>
+        </div>
       </div>
     </footer>
   );

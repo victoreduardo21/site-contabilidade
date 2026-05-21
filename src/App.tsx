@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import FeatureCounter from "./components/FeatureCounter";
@@ -10,16 +10,6 @@ import Footer from "./components/Footer";
 import { BUSINESS_INFO } from "./types";
 
 export default function App() {
-  const [showWhatsAppBadge, setShowWhatsAppBadge] = useState(false);
-
-  useEffect(() => {
-    // Show WhatsApp helper button text badge after a short delay
-    const timer = setTimeout(() => {
-      setShowWhatsAppBadge(true);
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleScrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -75,13 +65,8 @@ export default function App() {
       {/* 7. Footer Credits */}
       <Footer />
 
-      {/* Floating Action WhatsApp Contact with badge overlay */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-        {showWhatsAppBadge && (
-          <div className="px-4 py-2 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-full text-[11px] font-bold text-slate-200 shadow-2xl animate-fade-in hidden sm:block">
-            Atendimento <strong>Consultor Sênior</strong>
-          </div>
-        )}
+      {/* Floating Action WhatsApp Contact */}
+      <div className="fixed bottom-6 right-6 z-50">
         <a 
           id="whatsapp-fixed-anchor"
           href="#"
