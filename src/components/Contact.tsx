@@ -1,7 +1,18 @@
-import { Phone, MapPin, Clock, MessageSquare, ArrowRight, ShieldCheck } from "lucide-react";
+import { useState } from "react";
+import { Phone, MapPin, Clock, MessageSquare, ArrowRight, ShieldCheck, Copy, Check } from "lucide-react";
 import { BUSINESS_INFO } from "../types";
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyAddress = () => {
+    const fullAddress = `${BUSINESS_INFO.address}, ${BUSINESS_INFO.city}`;
+    navigator.clipboard.writeText(fullAddress).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   const handleWhatsAppRedirect = () => {
     const text = encodeURIComponent(
       "Olá! Vim do site da DUOS Contabilidade e gostaria de iniciar um diagnóstico fiscal estratégico para minha empresa."
@@ -118,14 +129,22 @@ export default function Contact() {
                   <span className="text-[11px] text-slate-200 font-semibold font-mono">Vila Matias, Santos - SP</span>
                   <span className="text-[10px] text-slate-400">Rua São Paulo, 41 - Sala 1806</span>
                 </div>
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent("R. São Paulo, 41 - Vila Matias, Santos")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all shadow-md active:scale-95 text-center shrink-0"
+                <button
+                  onClick={handleCopyAddress}
+                  className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition-all shadow-md active:scale-95 text-center shrink-0 flex items-center justify-center gap-2 cursor-pointer min-w-[140px]"
                 >
-                  Abrir no Google Maps →
-                </a>
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Copiado!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copiar Endereço</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
 
