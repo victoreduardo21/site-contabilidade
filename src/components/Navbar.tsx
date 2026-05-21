@@ -77,14 +77,6 @@ export default function Navbar({ onScrollTo }: NavbarProps) {
           </div>
 
           <div className="hidden lg:flex items-center space-x-6">
-            <a
-              id="cta-nav-phone"
-              href={`tel:${BUSINESS_INFO.whatsappNumber}`}
-              className="flex items-center text-slate-300 hover:text-white text-sm font-mono transition-colors"
-            >
-              <Phone className="w-4 h-4 mr-1.5 text-blue-400" />
-              {BUSINESS_INFO.phone}
-            </a>
             <button
               id="cta-nav-direct"
               onClick={() => handleNavClick("contato")}
